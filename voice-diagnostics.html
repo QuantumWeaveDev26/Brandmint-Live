@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BrandMint local voice check</title>
+<style>body{color:#eee;background:#10141f;max-width:780px;margin:36px auto;padding:0 20px;font:16px/1.6 system-ui,sans-serif}button{cursor:pointer;border:0;border-radius:6px;margin:4px;padding:12px 18px}button:disabled{opacity:.5;cursor:default}pre{white-space:pre-wrap;background:#1d2331;border-radius:6px;padding:16px}a{color:#a8c7ff}.note{color:#bdc8db}</style>  <script type="module" crossorigin src="/assets/voiceDiagnostics-DmGP7D63.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/browserVoice-asdMZtbA.js">
+</head>
+<body><h1>Local voice check</h1>
+<p>This separates your speaker, OpenAI readout and microphone paths. Use low speaker volume or headphones first.</p>
+<p class="note">The test tone is offline and uses the website's real PCM player. The OpenAI buttons use your server key and may incur API charges. The readout button sends one existing public BrandMint reply. The microphone button sends your microphone audio to OpenAI until one final transcript or Stop. No keys, recordings or transcripts appear in this log.</p>
+<p id="connection"></p><p id="reply"></p>
+<div><button id="tone">1. Test local PCM tone</button><button id="readout">2. Test OpenAI readout</button><button id="microphone">3. Test microphone input</button><button id="stop">Stop</button></div>
+<p>For microphone testing, say “What services do you provide?” and pause. For a full conversation, return to the website, open the AI agent, tap its mic and ask that question. Clicking the mic alone and typing do not trigger speech.</p>
+<pre id="log" aria-live="polite"></pre><p><a href="/?voiceDebug=1">Open website with safe console diagnostics</a></p></body></html>
