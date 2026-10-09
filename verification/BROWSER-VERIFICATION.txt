@@ -1,0 +1,73 @@
+HISTORICAL INITIAL CHECKPOINT — before the audio/output_audio compatibility hotfix. See HOTFIX-VERIFICATION.md for the latest results.
+
+BrandMint OpenAI voice: actual browser verification
+
+Tested 8 October 2026 in real cloud Chromium. Final checks ran 10:54–10:57 UTC
+against the frozen production build at http://127.0.0.1:8788/ using npm start,
+which serves dist and same-origin voice APIs. OPENAI_API_KEY was explicitly
+empty. No real API key, provider-paid call, microphone audio, external message,
+contact-form submission, or production deployment was used.
+
+Result: the scoped keyless UI and recovery checks passed. Live voice acceptance
+still requires the user's server-side key and real device/audio testing.
+
+Checked on the frozen production build
+- Home and the existing Custom AI Agent panel loaded. Existing greeting,
+  quick-query controls, text entry and action links were present. The help text
+  disclosed audio transmission to OpenAI and AI-generated OpenAI speech.
+- Clicking Start voice input displayed: “OpenAI voice is unavailable or not
+  configured. Text chat still works.” The mic returned to its idle control.
+  No microphone permission dialog appeared and none was accepted/bypassed.
+- Immediately afterward, typing “What is Quantum Weave?” produced the existing
+  detailed answer and its two action links.
+- Closing and reopening preserved the conversation history.
+- Typing “Take me to the contact page” produced the normal discovery-session
+  answer and links. The typed text did not itself navigate.
+- Clicking the answer's existing Book Discovery Call link rendered /contact
+  and closed the widget. Browser Back returned Home with the widget closed.
+  Reopening retained the conversation history.
+- Reset immediately after sending a question cleared the conversation; no
+  delayed answer appeared afterward.
+- Close immediately after sending a question cancelled its pending answer.
+  Reopening showed the user question but no stale answer; input remained usable.
+- The original AI & Automation Solutions quick-query button produced its
+  existing multi-item answer and action links.
+- The captured production console contained no observed application warnings
+  or errors. Browser-extension metadata errors were present separately.
+- No blank page reproduced during these frozen-production interactions.
+
+Development-preview observation
+Before the final production checks, the Vite preview twice became blank during
+concurrent implementation testing. The native Terminal visibly logged generated
+server module changes, Vite server restarts and dependency reoptimization. A
+reload recovered the preview. The final checks above were rerun on npm start
+without HMR, after the implementer confirmed a source freeze.
+
+Limits / not verified by this browser run
+- Real microphone capture, accurate human speech transcription, continuous
+  spoken turns, physical microphone cleanup, or voice-triggered Contact commands
+- Audible OpenAI voice quality, pronunciation, response delay or exact waveform
+  fidelity to the original agent reply
+- Acoustic barge-in, repeated human interruptions, background noise, sudden loud
+  noise, speaker echo, or duplicate transcripts from a live provider
+- Mobile devices, permission-denial recovery after a real permission prompt,
+  disconnected microphone behavior, or real network-loss recovery
+- End-to-end authenticated OpenAI service compatibility or billing behavior
+- Contact/newsletter submissions, account login, or external WhatsApp actions
+- Browser-level network tracing: DevTools was blocked by browser policy and no
+  bypass was attempted. Directly opening the status JSON URL was also blocked
+  by the browser client. No assertion about observed network traffic is made.
+  Source/build/provider-contract checks are separate evidence from this run.
+
+Existing visual observation
+The agent header title remains low-contrast against its dark background, as
+also recorded in the pre-existing browser report. No styling was changed here.
+
+Screenshots from the frozen production build
+- openai-production-missing-key.jpg: explicit keyless voice warning
+- openai-production-answer.jpg: original quick-query reply and action links
+- openai-production-contact.jpg: Contact page with widget closed
+
+Build identification
+File: dist/assets/index-CwPNIRrj.js
+SHA256: 857621b0f39d821ccd0d2262ab0e39c54bbd75335ff73672a8837db55170f4da
